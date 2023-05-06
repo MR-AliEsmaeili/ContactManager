@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@font-face {
+    font-family: 'Vazir';
+    src: url('./Fonts/Vazir.eot');
+    src: url('./Fonts/Vazir.eot?#iefix') format('embedded-opentype'),
+        url('./Fonts/Vazir.woff2') format('woff2'),
+        url('./Fonts/Vazir.woff') format('woff'),
+        url('./Fonts/Vazir.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;}
+    html {
+        @apply font-body bg-gray-100 text-gray-950 antialiased;
+    }
+@tailwind utilities;
+
+
