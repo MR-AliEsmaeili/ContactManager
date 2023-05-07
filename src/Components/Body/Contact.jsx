@@ -1,11 +1,11 @@
-import { IoIosEye, IoIosTrash, IoMdCreate } from "react-icons/io";
+import {IoIosEye, IoIosTrash, IoMdCreate} from 'react-icons/io'
 
 const Contact = () => {
   return (
     <div class="p-4 ">
       <div className="flex rounded-lg h-full bg-gray-500 p-8  max-sm:flex-col">
         <div className="flex items-center justify-center mb-3">
-          <div className="w-48 h-48  inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+          <div className="w-48 h-48  inline-flex items-center justify-center rounded-full bg-indigo-300 text-white flex-shrink-0">
             <img
               src="https://cdn-icons-png.flaticon.com/512/4128/4128349.png"
               alt=""
@@ -14,15 +14,18 @@ const Contact = () => {
           </div>
         </div>
         <div className="flex flex-col justify-between flex-grow mr-3">
-          <ul className="space-y-2 ">
-            <li className="bg-orange-100 p-3 rounded-2xl text-center shadow-sm">
-              نام و نام خانوادگی :<p className="">علی اسماعیلی</p>
+          <ul className="space-y-2 max-sm:w-fit max-sm:text-sm ">
+            <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
+              نام و نام خانوادگی :<hr />
+              <p className="">علی اسماعیلی</p>
             </li>
-            <li className="bg-gray-200 p-3 rounded-2xl text-center shadow-sm">
-              شماره تماس :<p>09121234567</p>
+            <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
+              شماره تماس :<hr className="text-gray-900" />
+              <p>09121234567</p>
             </li>
-            <li className="bg-gray-200 p-3 rounded-2xl text-center shadow-sm">
-              آدرس ایمیل : <p>ali.esmaeili.online@gmail.com</p>
+            <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
+              آدرس ایمیل :<hr className="text-gray-900" />{' '}
+              <p>ali.esmaeili.online@gmail.com</p>
             </li>
           </ul>
         </div>
@@ -39,7 +42,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

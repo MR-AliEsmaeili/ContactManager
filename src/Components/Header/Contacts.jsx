@@ -1,9 +1,8 @@
-import { IoIosAddCircle } from "react-icons/io";
-import Contact from "../Body/Contact";
-import NotFound from "../../Assets/no-found.gif";
-import Spinner from "../Spinner";
+import {IoIosAddCircle} from 'react-icons/io'
+import {Contact, Spinner} from '../Index'
+import NotFound from '../../Assets/no-found.gif'
 
-const Contacts = ({ contacts, loading }) => {
+const Contacts = ({contacts, loading}) => {
   return (
     <>
       <div className="contaner">
@@ -20,27 +19,19 @@ const Contacts = ({ contacts, loading }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="container">
+        <div className="flex flex-wrap justify-center mt-10">
           {contacts.length > 0 ? (
-            contacts.map((c) => <Contact key={c.id} contact={c} />)
+            contacts.map(c => <Contact key={c.id} contact={c} />)
           ) : (
             <div className="text-center  items-center justify-center pt-10">
               <p>مخاطب یافت نشد</p>
               <img className="h-52 max-sm:h-32  m-auto" src={NotFound} alt="" />
             </div>
           )}
-          <div className="flex flex-wrap justify-center mt-10">
-            <Contact />
-            <Contact />
-            <Contact />
-            <Contact />
-            <Contact />
-            <Contact />
-          </div>
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Contacts;
+export default Contacts
