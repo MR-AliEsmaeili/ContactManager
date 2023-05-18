@@ -1,14 +1,14 @@
 import {IoIosEye, IoIosTrash, IoMdCreate} from 'react-icons/io'
 
-const Contact = () => {
+const Contact = ({contact}) => {
   return (
-    <div class="p-4 ">
+    <div className="p-4 ">
       <div className="flex rounded-lg h-full bg-gray-500 p-8  max-sm:flex-col">
         <div className="flex items-center justify-center mb-3">
           <div className="w-48 h-48  inline-flex items-center justify-center rounded-full bg-indigo-300 text-white flex-shrink-0">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/4128/4128349.png"
-              alt=""
+              src={contact.Photo}
+              alt={contact.fullname}
               className="max-sm:h-32 max-sm:px-6 hover:rounded-se-2xl duration-300"
             />
           </div>
@@ -17,15 +17,15 @@ const Contact = () => {
           <ul className="space-y-2 max-sm:w-fit max-sm:text-sm ">
             <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
               نام و نام خانوادگی :<hr />
-              <p className="">علی اسماعیلی</p>
+              <p className="">{contact.FullName}</p>
             </li>
             <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
               شماره تماس :<hr className="text-gray-900" />
-              <p>09121234567</p>
+              <p>{contact.Mobile}</p>
             </li>
             <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
               آدرس ایمیل :<hr className="text-gray-900" />{' '}
-              <p>ali.esmaeili.online@gmail.com</p>
+              <p>{contact.Email}</p>
             </li>
           </ul>
         </div>

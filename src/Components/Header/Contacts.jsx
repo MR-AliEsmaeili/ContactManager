@@ -2,7 +2,7 @@ import {IoIosAddCircle} from 'react-icons/io'
 import {Contact, Spinner} from '../Index'
 import NotFound from '../../Assets/no-found.gif'
 
-const Contacts = ({contacts, loading}) => {
+const Contacts = ({contacts, groups, loading}) => {
   return (
     <>
       <div className="contaner">

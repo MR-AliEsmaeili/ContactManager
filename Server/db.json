@@ -1,0 +1,42 @@
+{
+  "Contacts": [
+    {
+      "FullName": "علی اسماعیلی",
+      "Photo": "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png",
+      "Mobile": "09057219376",
+      "Email": "ali.esmaeili.online@gmail.com",
+      "Group": "1",
+      "id": 2
+    },
+    {
+      "FullName": "زهرا کاوشی",
+      "Photo": "https://w7.pngwing.com/pngs/4/736/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png",
+      "Mobile": "09052408192",
+      "Email": "ali.esmaeili.online@gmail.com",
+      "Group": "1",
+      "id": 3
+    }
+  ],
+  "Group": [
+    {
+      "id": "1",
+      "name": "مشتریان"
+    },
+    {
+      "id": "1",
+      "name": "دوست"
+    },
+    {
+      "id": "1",
+      "name": "همکار"
+    },
+    {
+      "id": "1",
+      "name": "شرکت ها"
+    },
+    {
+      "id": "1",
+      "name": "فامیل"
+    }
+  ]
+}
