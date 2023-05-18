@@ -1,19 +1,26 @@
 import {IoIosAddCircle} from 'react-icons/io'
 import {Contact, Spinner} from '../Index'
 import NotFound from '../../Assets/no-found.gif'
+import {Link} from 'react-router-dom'
 
 const Contacts = ({contacts, groups, loading}) => {
   return (
     <>
       <div className="contaner">
         <div className="flex justify-center">
-          <button className="max-sm:hidden bg-indigo-400 shadow-md text-white  p-2 mt-2 rounded-md hover:rounded-lg hover:bg-indigo-500 duration-300 flex items-center">
+          <Link
+            to="/contacts/Add"
+            className="max-sm:hidden bg-indigo-400 shadow-md text-white  p-2 mt-2 rounded-md hover:rounded-lg hover:bg-indigo-500 duration-300 flex items-center"
+          >
             <IoIosAddCircle className="text-3xl pl-2" />
             ساخت مخاطب جدید
-          </button>
-          <button className="hidden max-sm:block duration-300 rounded-full bg-indigo-400 shadow-md text-white  p-2 mt-2    hover:bg-indigo-500   ">
+          </Link>
+          <Link
+            to="/contacts/Add"
+            className="hidden max-sm:block duration-300 rounded-full bg-indigo-400 shadow-md text-white  p-2 mt-2    hover:bg-indigo-500   "
+          >
             <IoIosAddCircle className="text-3xl " />
-          </button>
+          </Link>
         </div>
       </div>
       {loading ? (

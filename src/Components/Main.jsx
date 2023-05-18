@@ -1,24 +1,73 @@
 import {AddContact, Contacts, EditContact, Navbar, ViewContact} from './Index'
-import {Navigate, Route, Routes} from 'react-router-dom'
+import {Navigate, useNavigate, Route, Routes} from 'react-router-dom'
 
 import {useState, useEffect} from 'react'
 
-import {getAllContacts, getAllGroups} from '../Service/ContactService'
+import {
+  getAllContacts,
+  getAllGroups,
+  CreateContact
+} from '../Service/ContactService'
 const Main = () => {
+  const Navigate = useNavigate()
+  const [forceRender, setForceRender] = useState(false)
   const [loading, setLoading] = useState(false)
   const [getcontacts, setContacts] = useState([])
   const [getGroups, setGroups] = useState([])
+  const [getContact, setContact] = useState({
+    FullName: '',
+    Photo: '',
+    Mobile: '',
+    Email: '',
+    Group: ''
+  })
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true)
-      const {data: contactsData} = await getAllContacts()
-      const {data: groupData} = await getAllGroups()
-      setContacts(contactsData)
-      setGroups(groupData)
-      setLoading(false)
+      try {
+        setLoading(true)
+        const {data: contactsData} = await getAllContacts()
+        const {data: groupData} = await getAllGroups()
+        setContacts(contactsData)
+        setGroups(groupData)
+        setLoading(false)
+      } catch (error) {
+        console.log(error.massage)
+      }
     }
     fetchData()
   }, [])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const {data: contactsData} = await getAllContacts()
+        setContacts(contactsData)
+        setLoading(false)
+      } catch (error) {
+        console.log(error.massage)
+      }
+    }
+    fetchData()
+  }, [forceRender])
+  const setContactInfo = event => {
+    setContact({
+      ...getContact,
+      [event.target.name]: event.target.value
+    })
+  }
+  const createContactForm = async event => {
+    event.preventDefault()
+    try {
+      const {status} = await CreateContact(getContact)
+      if (status === 201) {
+        setContact({})
+        setForceRender(!forceRender)
+        Navigate('/Contacts')
+      }
+    } catch (err) {
+      console.log(err.massage)
+    }
+  }
   return (
     <div className="w-full min-h-screen bg-orange-200">
       <Navbar />
@@ -26,15 +75,20 @@ const Main = () => {
         <Route path="/" element={<Navigate to="/Contacts" />} />
         <Route
           path="/Contacts"
+          element={<Contacts contacts={getcontacts} loading={loading} />}
+        />
+        <Route
+          path="/Contacts/Add"
           element={
-            <Contacts
-              groups={getGroups}
-              contacts={getcontacts}
+            <AddContact
               loading={loading}
+              groups={getGroups}
+              setContactInfo={setContactInfo}
+              getcontact={getContact}
+              createContactForm={createContactForm}
             />
           }
         />
-        <Route path="/Contacts/Add" element={<AddContact />} />
         <Route path="/Contacts/:ContactId" element={<ViewContact />} />
         <Route path="/Contacts/Edit/:ContactId" element={<EditContact />} />
       </Routes>
