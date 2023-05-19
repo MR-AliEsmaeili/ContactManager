@@ -1,5 +1,7 @@
 # ContactManager
 first of all run the server 
+
+
 1- goto : cd server/ 
 next : run script "npm start"
 
