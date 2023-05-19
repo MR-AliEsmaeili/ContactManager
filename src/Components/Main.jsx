@@ -1,5 +1,5 @@
 import {AddContact, Contacts, EditContact, Navbar, ViewContact} from './Index'
-import {Navigate, useNavigate, Route, Routes} from 'react-router-dom'
+import {useNavigate, Route, Routes, Navigate} from 'react-router-dom'
 
 import {useState, useEffect} from 'react'
 
@@ -9,7 +9,7 @@ import {
   CreateContact
 } from '../Service/ContactService'
 const Main = () => {
-  const Navigate = useNavigate()
+  const Navigates = useNavigate()
   const [forceRender, setForceRender] = useState(false)
   const [loading, setLoading] = useState(false)
   const [getcontacts, setContacts] = useState([])
@@ -62,7 +62,7 @@ const Main = () => {
       if (status === 201) {
         setContact({})
         setForceRender(!forceRender)
-        Navigate('/Contacts')
+        Navigates('/Contacts')
       }
     } catch (err) {
       console.log(err.massage)
@@ -89,7 +89,10 @@ const Main = () => {
             />
           }
         />
-        <Route path="/Contacts/:ContactId" element={<ViewContact />} />
+        <Route
+          path="/Contacts/:ContactId"
+          element={<ViewContact loading={loading} contacts={getcontacts} />}
+        />
         <Route path="/Contacts/Edit/:ContactId" element={<EditContact />} />
       </Routes>
     </div>

@@ -3,7 +3,7 @@ import {Contact, Spinner} from '../Index'
 import NotFound from '../../Assets/no-found.gif'
 import {Link} from 'react-router-dom'
 
-const Contacts = ({contacts, groups, loading}) => {
+const Contacts = ({contacts, loading}) => {
   return (
     <>
       <div className="contaner">

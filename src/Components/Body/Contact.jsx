@@ -1,4 +1,5 @@
 import {IoIosEye, IoIosTrash, IoMdCreate} from 'react-icons/io'
+import {Link} from 'react-router-dom'
 
 const Contact = ({contact}) => {
   return (
@@ -30,9 +31,12 @@ const Contact = ({contact}) => {
           </ul>
         </div>
         <div className=" flex items-center justify-center m-3 sm:flex-col gap-y-2 gap-x-2">
-          <button className="block hover:shadow-gray-50 max-sm:mx-2 max-sm:inline shadow-sm bg-indigo-400 rounded-lg text-white p-2 hover:rounded-2xl duration-500">
+          <Link
+            to={`/Contacts/${contact.id}`}
+            className="block hover:shadow-gray-50 max-sm:mx-2 max-sm:inline shadow-sm bg-indigo-400 rounded-lg text-white p-2 hover:rounded-2xl duration-500"
+          >
             <IoIosEye />
-          </button>
+          </Link>
           <button className="block hover:shadow-gray-50 max-sm:mx-2 max-sm:inline shadow-sm bg-yellow-400 rounded-lg text-white p-2 hover:rounded-2xl duration-500">
             <IoMdCreate />
           </button>
