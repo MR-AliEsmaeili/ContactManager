@@ -24,9 +24,9 @@ export const CreateContact = contact => {
 }
 export const EditContact = (contact, contactId) => {
   const url = `${SERVER_URL}/Contacts/${contactId}`
-  return axios.post(url, contact)
+  return axios.put(url, contact)
 }
 export const DeleteContact = contactId => {
   const url = `${SERVER_URL}/Contacts/${contactId}`
-  return axios.get(url)
+  return axios.delete(url)
 }

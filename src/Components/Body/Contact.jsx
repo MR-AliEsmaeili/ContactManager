@@ -1,7 +1,7 @@
-import {IoIosEye, IoIosTrash, IoMdCreate} from 'react-icons/io'
-import {Link} from 'react-router-dom'
+import { IoIosEye, IoIosTrash, IoMdCreate } from "react-icons/io";
+import { Link } from "react-router-dom";
 
-const Contact = ({contact}) => {
+const Contact = ({ contact }) => {
   return (
     <div className="p-4 ">
       <div className="flex rounded-lg h-full bg-gray-500 p-8  max-sm:flex-col">
@@ -25,7 +25,7 @@ const Contact = ({contact}) => {
               <p>{contact.Mobile}</p>
             </li>
             <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
-              آدرس ایمیل :<hr className="text-gray-900" />{' '}
+              آدرس ایمیل :<hr className="text-gray-900" />{" "}
               <p>{contact.Email}</p>
             </li>
           </ul>
@@ -37,16 +37,19 @@ const Contact = ({contact}) => {
           >
             <IoIosEye />
           </Link>
-          <button className="block hover:shadow-gray-50 max-sm:mx-2 max-sm:inline shadow-sm bg-yellow-400 rounded-lg text-white p-2 hover:rounded-2xl duration-500">
+          <Link
+            to={`/Contacts/Edit/${contact.id}`}
+            className="block hover:shadow-gray-50 max-sm:mx-2 max-sm:inline shadow-sm bg-yellow-400 rounded-lg text-white p-2 hover:rounded-2xl duration-500"
+          >
             <IoMdCreate />
-          </button>
+          </Link>
           <button className="block hover:shadow-gray-50 max-sm:mx-2 max-sm:inline shadow-sm bg-red-500 rounded-lg text-white p-2 hover:rounded-2xl duration-500">
             <IoIosTrash />
           </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
