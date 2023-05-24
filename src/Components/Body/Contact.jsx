@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Contact = ({ contact }) => {
   return (
     <div className="p-4 ">
-      <div className="flex rounded-lg h-full bg-gray-500 p-8  max-sm:flex-col">
+      <div className="flex rounded-lg h-full bg-gray-600 border-2 border-indigo-500 p-8  max-sm:flex-col">
         <div className="flex items-center justify-center mb-3">
           <div className="w-48 h-48  inline-flex items-center justify-center rounded-full bg-indigo-300 text-white flex-shrink-0">
             <img

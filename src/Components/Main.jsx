@@ -17,7 +17,7 @@ import {
 const Main = () => {
   const Navigates = useNavigate();
   const [forceRender, setForceRender] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [getcontacts, setContacts] = useState([]);
   const [getGroups, setGroups] = useState([]);
   const [getContact, setContact] = useState({
@@ -75,7 +75,10 @@ const Main = () => {
     }
   };
   return (
-    <div className="w-full min-h-screen bg-orange-200">
+    <div
+      className="w-full min-h-screen"
+      style={{ backgroundColor: "#aaaaaaaa" }}
+    >
       <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/Contacts" />} />
