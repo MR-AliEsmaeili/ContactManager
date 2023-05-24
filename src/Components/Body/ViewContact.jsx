@@ -41,7 +41,7 @@ const ViewContact = (contacts) => {
   return (
     <>
       <div className="container my-3">
-        <p className="text-xl text-indigo-500 border-b-2 border-indigo-400 text-center py-3 mx-5">
+        <p className="text-xl text-teal-400 border-b-2 border-teal-600 text-center py-3 mx-5">
           اطلاعات مخاطب
         </p>
       </div>
@@ -51,7 +51,7 @@ const ViewContact = (contacts) => {
         Object.keys(contact).length > 0 && (
           <div className="container">
             <div className="p-4 ">
-              <div className="flex rounded-lg h-full bg-gray-500 p-8 shadow-xl  max-sm:flex-col">
+              <div className="flex rounded-lg h-full border-2 border-teal-600 bg-gray-500 p-8 shadow-xl  max-sm:flex-col">
                 <div className="flex items-center justify-center mb-3">
                   <div className="w-48 h-48  inline-flex items-center justify-center rounded-full bg-indigo-300 text-white flex-shrink-0">
                     <img
