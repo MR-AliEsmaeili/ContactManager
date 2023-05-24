@@ -1,43 +1,43 @@
-import {Link, useParams} from 'react-router-dom'
+import { Link, useParams } from "react-router-dom";
 
-import {useState, useEffect} from 'react'
-import {Spinner} from '../Index'
-import {getContact, getGroups} from '../../Service/ContactService.js'
-const ViewContact = contacts => {
-  const {ContactId} = useParams()
+import { useState, useEffect } from "react";
+import { Spinner } from "../Index";
+import { getContact, getGroups } from "../../Service/ContactService.js";
+const ViewContact = (contacts) => {
+  const { ContactId } = useParams();
   const [state, setstate] = useState({
     loading: false,
     contact: {},
-    group: {}
-  })
+    group: {},
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setstate({
           ...state,
-          loading: true
-        })
-        const {data: contactdata} = await getContact(ContactId)
-        const {data: groupdata} = await getGroups(contactdata.Group)
+          loading: true,
+        });
+        const { data: contactdata } = await getContact(ContactId);
+        const { data: groupdata } = await getGroups(contactdata.Group);
         setstate({
           ...state,
           loading: false,
           contact: contactdata,
-          group: groupdata
-        })
+          group: groupdata,
+        });
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
         setstate({
           ...state,
-          loading: false
-        })
+          loading: false,
+        });
       }
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
 
-  const {loading, contact, group} = state
+  const { loading, contact, group } = state;
   return (
     <>
       <div className="container my-3">
@@ -72,7 +72,7 @@ const ViewContact = contacts => {
                       <p>{contact.Mobile}</p>
                     </li>
                     <li className="bg-orange-100 p-1 rounded-md text-center shadow-sm">
-                      آدرس ایمیل :<hr className="text-gray-900" />{' '}
+                      آدرس ایمیل :<hr className="text-gray-900" />{" "}
                       <p>{contact.Email}</p>
                     </li>
                     <li className="bg-orange-100 p-1 rounded-md text-center shadow-sm">
@@ -92,7 +92,7 @@ const ViewContact = contacts => {
         )
       )}
     </>
-  )
-}
+  );
+};
 
-export default ViewContact
+export default ViewContact;

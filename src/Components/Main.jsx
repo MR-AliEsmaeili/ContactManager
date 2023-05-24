@@ -99,18 +99,7 @@ const Main = () => {
           path="/Contacts/:ContactId"
           element={<ViewContact loading={loading} contacts={getcontacts} />}
         />
-        <Route
-          path="/Contacts/Edit/:ContactId"
-          element={
-            <EditContact
-              loading={loading}
-              groups={getGroups}
-              setContactInfo={setContactInfo}
-              getcontact={getContact}
-              createContactForm={createContactForm}
-            />
-          }
-        />
+        <Route path="/Contacts/Edit/:ContactId" element={<EditContact />} />
       </Routes>
     </div>
   );

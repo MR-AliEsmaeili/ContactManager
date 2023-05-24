@@ -1,13 +1,74 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import img from "../../Assets/man-taking-note.png";
-import Spinner from "../Spinner";
-const AddContact = ({
-  createContactForm,
-  loading,
-  groups,
-  setContactInfo,
-  getcontact,
-}) => {
+import { Spinner } from "../Index";
+import {
+  getContact,
+  getAllGroups,
+  EditContact,
+} from "../../Service/ContactService";
+const AddContact = () => {
+  const { ContactId } = useParams();
+  const navigate = useNavigate();
+  const [state, setstate] = useState({
+    loading: false,
+    getcontact: {
+      FullName: "",
+      Photo: "",
+      Mobile: "",
+      Email: "",
+      Group: "",
+    },
+    groups: [],
+  });
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        setstate({ ...state, loading: true });
+        const { data: contactdata } = await getContact(parseInt(ContactId));
+
+        const { data: groupdata } = await getAllGroups();
+        setstate({
+          ...state,
+          loading: false,
+          getcontact: contactdata,
+          groups: groupdata,
+        });
+      } catch (error) {
+        console.log(error.message);
+        setstate({ ...state, loading: false });
+      }
+    };
+    fetchdata();
+  }, []);
+
+  const { loading, getcontact, groups } = state;
+  const setContactInfo = (e) => {
+    setstate({
+      ...state,
+      getcontact: {
+        ...state.getcontact,
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
+
+  const createContactForm = async (e) => {
+    e.preventDefault();
+    try {
+      setstate({ ...state, loading: true });
+      const { data } = await EditContact(state.getcontact, ContactId);
+
+      setstate({ ...state, loading: false });
+      if (data) {
+        navigate("/Contacts");
+      }
+    } catch (error) {
+      console.log(error);
+      setstate({ ...state, loading: false });
+    }
+  };
   return (
     <>
       {loading ? (
