@@ -3,7 +3,7 @@ import {Contact, Spinner} from '../Index'
 import NotFound from '../../Assets/no-found.gif'
 import {Link} from 'react-router-dom'
 
-const Contacts = ({contacts, loading}) => {
+const Contacts = ({contacts, loading, confirmDelete}) => {
   return (
     <>
       <div className="contaner">
@@ -28,7 +28,13 @@ const Contacts = ({contacts, loading}) => {
       ) : (
         <div className="flex flex-wrap justify-center mt-10">
           {contacts.length > 0 ? (
-            contacts.map(c => <Contact key={c.id} contact={c} />)
+            contacts.map(c => (
+              <Contact
+                key={c.id}
+                contact={c}
+                confirmDelete={() => confirmDelete(c.id, c.FullName)}
+              />
+            ))
           ) : (
             <div className="text-center  items-center justify-center pt-10">
               <p>مخاطب یافت نشد</p>
