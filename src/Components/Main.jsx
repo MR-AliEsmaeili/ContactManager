@@ -159,7 +159,15 @@ const Main = () => {
           path="/Contacts/:ContactId"
           element={<ViewContact loading={loading} contacts={getcontacts} />}
         />
-        <Route path="/Contacts/Edit/:ContactId" element={<EditContact />} />
+        <Route
+          path="/Contacts/Edit/:ContactId"
+          element={
+            <EditContact
+              forceRender={forceRender}
+              setForceRender={setForceRender}
+            />
+          }
+        />
       </Routes>
     </div>
   );

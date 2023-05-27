@@ -7,7 +7,7 @@ import {
   getAllGroups,
   EditContact,
 } from "../../Service/ContactService";
-const AddContact = () => {
+const EditContactComp = ({ setForceRender, forceRender }) => {
   const { ContactId } = useParams();
   const navigate = useNavigate();
   const [state, setstate] = useState({
@@ -63,6 +63,7 @@ const AddContact = () => {
       setstate({ ...state, loading: false });
       if (data) {
         navigate("/Contacts");
+        setForceRender(!forceRender);
       }
     } catch (error) {
       console.log(error);
@@ -161,4 +162,4 @@ const AddContact = () => {
   );
 };
 
-export default AddContact;
+export default EditContactComp;
