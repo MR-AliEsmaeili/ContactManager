@@ -1,9 +1,9 @@
-import {IoIosAddCircle} from 'react-icons/io'
-import {Contact, Spinner} from '../Index'
-import NotFound from '../../Assets/no-found.gif'
-import {Link} from 'react-router-dom'
+import { IoIosAddCircle } from "react-icons/io";
+import { Contact, Spinner } from "../Index";
+import NotFound from "../../Assets/no-found.gif";
+import { Link } from "react-router-dom";
 
-const Contacts = ({contacts, loading, confirmDelete}) => {
+const Contacts = ({ contacts, loading, confirmDelete }) => {
   return (
     <>
       <div className="contaner">
@@ -26,9 +26,9 @@ const Contacts = ({contacts, loading, confirmDelete}) => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-wrap justify-center mt-10">
+        <div className="flex flex-wrap justify-center mt-5">
           {contacts.length > 0 ? (
-            contacts.map(c => (
+            contacts.map((c) => (
               <Contact
                 key={c.id}
                 contact={c}
@@ -44,7 +44,7 @@ const Contacts = ({contacts, loading, confirmDelete}) => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Contacts
+export default Contacts;

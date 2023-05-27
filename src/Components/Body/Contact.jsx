@@ -1,31 +1,32 @@
-import {IoIosEye, IoIosTrash, IoMdCreate} from 'react-icons/io'
-import {Link} from 'react-router-dom'
+import { IoIosEye, IoIosTrash, IoMdCreate } from "react-icons/io";
+import { Link } from "react-router-dom";
 
-const Contact = ({contact, confirmDelete}) => {
+const Contact = ({ contact, confirmDelete }) => {
   return (
-    <div className="p-4 ">
-      <div className="flex rounded-lg h-full bg-gray-600 border-2 border-indigo-500 p-8  max-sm:flex-col">
-        <div className="flex items-center justify-center mb-3">
-          <div className="w-48 h-48  inline-flex items-center justify-center rounded-full bg-indigo-300 text-white flex-shrink-0">
+    <div className="p-1 ">
+      <div className="flex  rounded-lg h-full bg-gray-600 border-2 border-indigo-500 p-2  max-sm:flex-col">
+        <div className="flex items-center justify-center max-sm:mb-3">
+          <div className="h-24 w-24 inline-flex items-center justify-center  flex-shrink-0">
             <img
               src={contact.Photo}
               alt={contact.fullname}
-              className="max-sm:h-32 max-sm:px-6 hover:rounded-se-2xl duration-300"
+              className="  hover:rounded-se-2xl duration-300"
             />
           </div>
         </div>
-        <div className="flex flex-col justify-between flex-grow mr-3">
-          <ul className="space-y-2 max-sm:w-fit max-sm:text-sm ">
-            <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
-              نام و نام خانوادگی :<hr />
+        <div className="flex items-center justify-between flex-wrap w-fit  mr-3 rounded-2xl">
+          <ul className=" max-sm:w-fit max-sm:text-sm  ">
+            <li className="bg-orange-100 p-2  text-center shadow-sm text-sm border-b-2 border-gray-400 flex flex-wrap">
+              <h1 className="pl-2 font-bold">نام و نام خانوادگی :</h1>
+
               <p className="">{contact.FullName}</p>
             </li>
-            <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
-              شماره تماس :<hr className="text-gray-900" />
+            <li className="bg-orange-100 p-2  text-center shadow-sm text-sm border-b-2 border-gray-400 flex flex-wrap">
+              <h1 className="pl-2 font-bold">شماره تماس :</h1>
               <p>{contact.Mobile}</p>
             </li>
-            <li className="bg-orange-100 p-1 rounded-2xl text-center shadow-sm">
-              آدرس ایمیل :<hr className="text-gray-900" />{' '}
+            <li className="bg-orange-100 p-2  text-center shadow-sm text-sm flex flex-wrap ">
+              <h1 className="pl-2 font-bold"> آدرس ایمیل : </h1>
               <p>{contact.Email}</p>
             </li>
           </ul>
@@ -52,7 +53,7 @@ const Contact = ({contact, confirmDelete}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
