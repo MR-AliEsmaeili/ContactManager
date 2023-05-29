@@ -128,7 +128,7 @@ const Main = () => {
       contact =>
         contact.Mobile.includes(e.target.value) ||
         contact.FullName.includes(e.target.value) ||
-        contact.Email.includes(e.target.value)
+        contact.Email.toLowerCase().includes(e.target.value.toLowerCase())
     )
     setFilteredContact(allContacts)
   }
