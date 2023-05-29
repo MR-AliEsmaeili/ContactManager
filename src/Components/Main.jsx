@@ -1,113 +1,110 @@
-import { useState, useEffect } from "react";
-import { confirmAlert } from "react-confirm-alert";
-import {
-  AddContact,
-  Contacts,
-  EditContact,
-  Navbar,
-  ViewContact,
-} from "./Index";
-import { useNavigate, Route, Routes, Navigate } from "react-router-dom";
+import {useState, useEffect} from 'react'
+import {confirmAlert} from 'react-confirm-alert'
+import {AddContact, Contacts, EditContact, Navbar, ViewContact} from './Index'
+import {useNavigate, Route, Routes, Navigate} from 'react-router-dom'
 
 import {
   getAllContacts,
   getAllGroups,
   CreateContact,
-  DeleteContact,
-} from "../Service/ContactService";
+  DeleteContact
+} from '../Service/ContactService'
 const Main = () => {
-  const Navigates = useNavigate();
-  const [forceRender, setForceRender] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [getcontacts, setContacts] = useState([]);
-  const [getGroups, setGroups] = useState([]);
+  const Navigates = useNavigate()
+  const [forceRender, setForceRender] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [getcontacts, setContacts] = useState([])
+  const [getGroups, setGroups] = useState([])
   const [getContact, setContact] = useState({
-    FullName: "",
-    Photo: "",
-    Mobile: "",
-    Email: "",
-    Group: "",
-  });
+    FullName: '',
+    Photo: '',
+    Mobile: '',
+    Email: '',
+    Group: ''
+  })
+  const [query, setQuery] = useState({text: ''})
+  const [filteredContact, setFilteredContact] = useState([])
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
-        const { data: contactsData } = await getAllContacts();
-        const { data: groupData } = await getAllGroups();
-        setContacts(contactsData);
-        setGroups(groupData);
-        setLoading(false);
+        setLoading(true)
+        const {data: contactsData} = await getAllContacts()
+        const {data: groupData} = await getAllGroups()
+        setContacts(contactsData)
+        setFilteredContact(contactsData)
+        setGroups(groupData)
+        setLoading(false)
       } catch (error) {
-        console.log(error.massage);
+        console.log(error.massage)
       }
-    };
-    fetchData();
-  }, []);
+    }
+    fetchData()
+  }, [])
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
-        const { data: contactsData } = await getAllContacts();
-        setContacts(contactsData);
-        setLoading(false);
+        setLoading(true)
+        const {data: contactsData} = await getAllContacts()
+        setContacts(contactsData)
+        setLoading(false)
       } catch (error) {
-        console.log(error.massage);
+        console.log(error.massage)
       }
-    };
-    fetchData();
-  }, [forceRender]);
-  const setContactInfo = (event) => {
+    }
+    fetchData()
+  }, [forceRender])
+  const setContactInfo = event => {
     setContact({
       ...getContact,
-      [event.target.name]: event.target.value,
-    });
-  };
-  const createContactForm = async (event) => {
-    event.preventDefault();
+      [event.target.name]: event.target.value
+    })
+  }
+  const createContactForm = async event => {
+    event.preventDefault()
     try {
-      const { status } = await CreateContact(getContact);
+      const {status} = await CreateContact(getContact)
       if (status === 201) {
-        setContact({});
-        setForceRender(!forceRender);
-        Navigates("/Contacts");
+        setContact({})
+        setForceRender(!forceRender)
+        Navigates('/Contacts')
       }
     } catch (err) {
-      console.log(err.massage);
+      console.log(err.massage)
     }
-  };
+  }
 
-  const removeContact = async (contactId) => {
+  const removeContact = async contactId => {
     try {
-      setLoading(true);
-      const response = await DeleteContact(contactId);
+      setLoading(true)
+      const response = await DeleteContact(contactId)
       if (response) {
-        const { data: contactsData } = await getAllContacts();
-        setContacts(contactsData);
-        setLoading(false);
+        const {data: contactsData} = await getAllContacts()
+        setContacts(contactsData)
+        setLoading(false)
       }
     } catch (error) {
-      console.log(error.message);
-      setLoading(false);
+      console.log(error.message)
+      setLoading(false)
     }
-  };
+  }
 
   const confirm = (contactId, contactfullname) => {
     confirmAlert({
-      customUI: ({ onClose }) => {
+      customUI: ({onClose}) => {
         return (
           <div className="p-4 border-2 border-teal-500 bg-gray-400 rounded-lg">
             <h1 className="text-2xl ">پاک کردن مخاطب</h1>
             <h4 className="text-lg ">
-              مطمئن هستی که مخاطب{" "}
-              <h3 className="text-xl text-red-500 inline">{contactfullname}</h3>{" "}
+              مطمئن هستی که مخاطب{' '}
+              <h3 className="text-xl text-red-500 inline">{contactfullname}</h3>{' '}
               پاک بشه ؟
             </h4>
             <div className="mt-3">
               <button
                 className="p-2 m-2 bg-teal-400 hover:bg-teal-600 duration-500 rounded-lg"
                 onClick={() => {
-                  removeContact(contactId);
-                  onClose();
+                  removeContact(contactId)
+                  onClose()
                 }}
               >
                 مطمئن هستم
@@ -120,24 +117,31 @@ const Main = () => {
               </button>
             </div>
           </div>
-        );
-      },
-    });
-  };
+        )
+      }
+    })
+  }
 
+  const handleSearch = e => {
+    setQuery({...query, text: e.target.value})
+    const allContacts = getcontacts.filter(
+      contact =>
+        contact.Mobile.includes(e.target.value) ||
+        contact.FullName.includes(e.target.value) ||
+        contact.Email.includes(e.target.value)
+    )
+    setFilteredContact(allContacts)
+  }
   return (
-    <div
-      className="w-full min-h-screen"
-      style={{ backgroundColor: "#aaaaaaaa" }}
-    >
-      <Navbar />
+    <div className="w-full min-h-screen" style={{backgroundColor: '#aaaaaaaa'}}>
+      <Navbar query={query} search={handleSearch} />
       <Routes>
         <Route path="/" element={<Navigate to="/Contacts" />} />
         <Route
           path="/Contacts"
           element={
             <Contacts
-              contacts={getcontacts}
+              contacts={filteredContact}
               loading={loading}
               confirmDelete={confirm}
             />
@@ -170,7 +174,7 @@ const Main = () => {
         />
       </Routes>
     </div>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main
