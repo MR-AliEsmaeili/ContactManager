@@ -28,6 +28,8 @@ const Main = () => {
     Email: "",
     Group: "",
   });
+  const [query, setQuery] = useState({ text: "" });
+  const [filteredContact, setFilteredContact] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,6 +37,7 @@ const Main = () => {
         const { data: contactsData } = await getAllContacts();
         const { data: groupData } = await getAllGroups();
         setContacts(contactsData);
+        setFilteredContact(contactsData);
         setGroups(groupData);
         setLoading(false);
       } catch (error) {
@@ -49,6 +52,7 @@ const Main = () => {
         setLoading(true);
         const { data: contactsData } = await getAllContacts();
         setContacts(contactsData);
+        setFilteredContact(contactsData);
         setLoading(false);
       } catch (error) {
         console.log(error.massage);
@@ -124,19 +128,29 @@ const Main = () => {
     });
   };
 
+  const handleSearch = (e) => {
+    setQuery({ ...query, text: e.target.value });
+    const allContacts = getcontacts.filter(
+      (contact) =>
+        contact.Mobile.includes(e.target.value) ||
+        contact.FullName.includes(e.target.value) ||
+        contact.Email.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredContact(allContacts);
+  };
   return (
     <div
       className="w-full min-h-screen"
       style={{ backgroundColor: "#aaaaaaaa" }}
     >
-      <Navbar />
+      <Navbar query={query} search={handleSearch} />
       <Routes>
         <Route path="/" element={<Navigate to="/Contacts" />} />
         <Route
           path="/Contacts"
           element={
             <Contacts
-              contacts={getcontacts}
+              contacts={filteredContact}
               loading={loading}
               confirmDelete={confirm}
             />

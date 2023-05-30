@@ -1,20 +1,24 @@
-import { IoIosContact } from "react-icons/io";
-import Search from "./Search";
+import {IoIosContact} from 'react-icons/io'
+import Search from './Search'
+import {useLocation} from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({query, search}) => {
+  const location = useLocation()
   return (
     <div className=" w-full right-0 top-0 shadow-xl">
       <div
-        className="flex justify-between items-center max-md:flex-col max-md:space-y-4
+        className="flex justify-between  items-center max-md:flex-col max-md:space-y-4
                      bg-gray-500 py-2 md:px-10 px-7"
       >
         <div className="max-sm:text-xs grid-cols-6 font-bold text-xl cursor-pointer flex items-center text-gray-800  ">
           <IoIosContact className="max-sm:text-lg text-3xl text-indigo-800" />
           <div className="mr-3 text-white">وب اپلیکیشن مدیریت مخاطبین</div>
         </div>
-        <Search />
+        {location.pathname === '/Contacts' ? (
+          <Search query={query} search={search} />
+        ) : null}
       </div>
     </div>
-  );
-};
-export default Navbar;
+  )
+}
+export default Navbar

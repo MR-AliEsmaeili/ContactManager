@@ -10,7 +10,7 @@ const Contacts = ({ contacts, loading, confirmDelete }) => {
         <div className="flex justify-center">
           <Link
             to="/contacts/Add"
-            className="max-sm:hidden bg-indigo-400 shadow-md text-white  p-2 mt-2 rounded-md hover:rounded-lg hover:bg-indigo-500 duration-300 flex items-center"
+            className="max-sm:hidden bg-indigo-400 shadow-md text-white py-1 px-2 mt-2 rounded-md hover:rounded-lg hover:bg-indigo-500 duration-300 flex items-center"
           >
             <IoIosAddCircle className="text-3xl pl-2" />
             ساخت مخاطب جدید
@@ -26,21 +26,27 @@ const Contacts = ({ contacts, loading, confirmDelete }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-wrap justify-center mt-5">
-          {contacts.length > 0 ? (
-            contacts.map((c) => (
-              <Contact
-                key={c.id}
-                contact={c}
-                confirmDelete={() => confirmDelete(c.id, c.FullName)}
-              />
-            ))
-          ) : (
-            <div className="text-center  items-center justify-center pt-10">
-              <p>مخاطب یافت نشد</p>
-              <img className="h-52 max-sm:h-32  m-auto" src={NotFound} alt="" />
-            </div>
-          )}
+        <div className="container">
+          <div className="flex flex-wrap justify-center mt-5">
+            {contacts.length > 0 ? (
+              contacts.map((c) => (
+                <Contact
+                  key={c.id}
+                  contact={c}
+                  confirmDelete={() => confirmDelete(c.id, c.FullName)}
+                />
+              ))
+            ) : (
+              <div className="text-center  items-center justify-center pt-10">
+                <p>مخاطب یافت نشد</p>
+                <img
+                  className="h-52 max-sm:h-32  m-auto"
+                  src={NotFound}
+                  alt=""
+                />
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>
