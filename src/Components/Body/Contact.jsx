@@ -14,10 +14,10 @@ const Contact = ({ contact, confirmDelete }) => {
             />
           </div>
         </div>
-        <div className="flex items-center justify-between flex-wrap w-fit  mr-3 rounded-2xl">
+        <div className="flex items-center justify-between flex-wrap  w-fit  mr-3 rounded-2xl">
           <ul className=" max-sm:w-fit max-sm:text-sm  ">
-            <li className="bg-orange-100 p-2  text-center shadow-sm text-sm border-b-2 border-gray-400 flex flex-wrap">
-              <h1 className="pl-2 font-bold">نام و نام خانوادگی :</h1>
+            <li className="bg-orange-100 p-2   shadow-sm text-sm border-b-2 border-gray-400 flex flex-wrap">
+              <h1 className="pl-2 font-bold ">نام و نام خانوادگی :</h1>
 
               <p className="">{contact.FullName}</p>
             </li>

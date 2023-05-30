@@ -98,7 +98,6 @@ const Main = () => {
           <div className="p-4 border-2 border-teal-500 bg-gray-400 rounded-lg">
             <h1 className="text-2xl ">پاک کردن مخاطب</h1>
             <h4 className="text-lg ">
-              مطمئن هستی که مخاطب{" "}
               <h3 className="text-xl text-red-500 inline">{contactfullname}</h3>{" "}
               پاک بشه ؟
             </h4>
